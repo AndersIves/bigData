@@ -1,0 +1,60 @@
+version: "2"
+services:
+  mongo_db:
+    container_name: mongo_db
+    build: ./mongo
+    image: mongo:3.4.3
+    restart: always
+    ports:
+      - "27017:27017"
+    # environment:
+    #   MONGO_INITDB_ROOT_USERNAME: "root"
+    #   MONGO_INITDB_ROOT_PASSWORD: "root"
+  elasticsearch:
+    container_name: elasticsearch
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+    restart: always
+    ports:
+      - "9200:9200" 
+      - "9300:9300"
+
+  # redis:
+  #   container_name: redis
+  #   image: redis
+  #   restart: always
+  #   networks:
+  #     extnetwork:
+  #       ipv4_address: 172.19.0.100
+  #   ports:
+  #     - 6379:6379
+  #   volumes:
+  #     - /redis/redis.conf:/etc/redis/redis.conf
+  #   command: redis-server /etc/redis/redis.conf
+
+  # master:
+  #   container_name: master
+  #   image: singularities/spark
+  #   command: start-spark master
+  #   hostname: master
+  #   ports:
+  #     - "6066:6066"
+  #     - "7070:7070"
+  #     - "8080:8080"
+  #     - "50070:50070"
+      
+  # worker:
+  #   container_name: worker
+  #   image: singularities/spark
+  #   command: start-spark worker master
+  #   environment:
+  #     SPARK_WORKER_CORES: 1
+  #     SPARK_WORKER_MEMORY: 2g
+  #   links:
+  #     - master
+
+# networks:
+#   extnetwork:
+#       ipam:
+#         config:
+#         - subnet: 172.19.0.0/16
+#           gateway: 172.19.0.1
