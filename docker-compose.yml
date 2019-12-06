@@ -17,6 +17,12 @@ services:
     ports:
       - "9200:9200" 
       - "9300:9300"
+  elasticsearch_head:
+    container_name: elasticsearch_head
+    image: mobz/elasticsearch-head:5
+    restart: always
+    ports:
+      - "9100:9100"
 
 #  redis:
 #   container_name: redis
