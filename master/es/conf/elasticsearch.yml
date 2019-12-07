@@ -10,7 +10,7 @@ network.bind_host: 0.0.0.0
 
 #设置其它节点和该节点交互的ip地址，如果不设置它会自动判断，
 #值必须是个真实的ip地址
-network.publish_host: X.X.X.X
+#network.publish_host: X.X.X.X
 
 #设置对外服务的http端口，默认为9200
 http.port: 9200
