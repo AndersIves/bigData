@@ -35,4 +35,4 @@ path:
 xpack:
   security:
     audit:
-      enabled: true
+      enabled: false
