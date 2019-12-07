@@ -1,39 +1,36 @@
-version: "2"
+version: '2.0'
 services:
-#  mongo_db:
-#    container_name: mongo_db
-##    build: ./mongo
-#    image: mongo:3.4.3
-#    restart: always
-#    ports:
-#      - "27017:27017"
-##    environment:
-##      MONGO_INITDB_ROOT_USERNAME: "root"
-##      MONGO_INITDB_ROOT_PASSWORD: "root"
 
-  es-master:
-    container_name: es-master
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+  #  mongo_db:
+  #    container_name: mongo_db
+  ##    build: ./mongo
+  #    image: mongo:3.4.3
+  #    restart: always
+  #    ports:
+  #      - "27017:27017"
+  ##    environment:
+  ##      MONGO_INITDB_ROOT_USERNAME: "root"
+  ##      MONGO_INITDB_ROOT_PASSWORD: "root"
+
+  elasticsearch-central:
+    image: elasticsearch:5.6.4
+    container_name: es1
+    volumes:
+      - /opt/modules/elasticsearch/node/es1/data:/usr/share/elasticsearch/data
+      - /opt/modules/elasticsearch/node/es1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - ES_CLUSTERNAME=elasticsearch
     command: elasticsearch
-    volumes:
-      - "./es/data:/usr/share/elasticsearch/data"
-      - "./es/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "./es/logs:/user/share/elasticsearch/logs"
     ports:
-      - "9200:9200" 
+      - "9200:9200"
       - "9300:9300"
-
-
   elasticsearch-data:
-    container_name: es1
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+    image: elasticsearch:5.6.4
+    container_name: es2
     volumes:
-      - "./es1/data:/usr/share/elasticsearch/data"
-      - "./es1/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "./es1/logs:/user/share/elasticsearch/logs"
+      - /opt/modules/elasticsearch/node/es2/data:/usr/share/elasticsearch/data
+      - /opt/modules/elasticsearch/node/es2/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
@@ -43,56 +40,14 @@ services:
       - "9201:9200"
       - "9301:9300"
     links:
-      - es-master:elasticsearch
-
-  es-head:
-    container_name: es_head
+      - elasticsearch-central:elasticsearch
+  elasticsearch-head:
     image: mobz/elasticsearch-head:5
+    container_name: head
     volumes:
-      - "./es_head/Gruntfile.js:/usr/src/app/Gruntfile.js"
-      - "./es_head/app.js:/usr/src/app/_site/app.js"
+      - /opt/modules/elasticsearch/head/Gruntfile.js:/usr/src/app/Gruntfile.js
+      - /opt/modules/elasticsearch/head/_site/app.js:/usr/src/app/_site/app.js
     ports:
       - "9100:9100"
     links:
-      - es-master:elasticsearch
-
-#  redis:
-#   container_name: redis
-#   image: redis
-#   restart: always
-#   networks:
-#     extnetwork:
-#       ipv4_address: 172.19.0.100
-#   ports:
-#     - 6379:6379
-#   volumes:
-#     - /redis/redis.conf:/etc/redis/redis.conf
-#   command: redis-server /etc/redis/redis.conf
-#
-#  master:
-#    container_name: master
-#    image: singularities/spark
-#    command: start-spark master
-#    hostname: master
-#    ports:
-#      - "6066:6066"
-#      - "7070:7070"
-#      - "8080:8080"
-#      - "50070:50070"
-#
-#  worker:
-#    container_name: worker
-#    image: singularities/spark
-#    command: start-spark worker master
-#    environment:
-#      SPARK_WORKER_CORES: 1
-#      SPARK_WORKER_MEMORY: 2g
-#    links:
-#      - master
-#
-#networks:
-# extnetwork:
-#     ipam:
-#       config:
-#       - subnet: 172.19.0.0/16
-#         gateway: 172.19.0.1
+      - elasticsearch-central:elasticsearch
