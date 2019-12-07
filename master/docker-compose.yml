@@ -1,15 +1,15 @@
 version: "2"
 services:
-#  mongo_db:
-#    container_name: mongo_db
-##    build: ./mongo
-#    image: mongo:3.4.3
-#    restart: always
-#    ports:
-#      - "27017:27017"
-##    environment:
-##      MONGO_INITDB_ROOT_USERNAME: "root"
-##      MONGO_INITDB_ROOT_PASSWORD: "root"
+  mongo_db:
+    container_name: mongo_db
+#    build: ./mongo
+    image: mongo:3.4.3
+    restart: always
+    ports:
+      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: "root"
+#      MONGO_INITDB_ROOT_PASSWORD: "root"
   es-master:
     container_name: es-master
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
@@ -21,12 +21,12 @@ services:
     ports:
       - "9200:9200" 
       - "9300:9300"
-#  es-head:
-#    container_name: es_head
-#    image: mobz/elasticsearch-head:5
-#    restart: always
-#    ports:
-#      - "9100:9100"
+  es-head:
+    container_name: es_head
+    image: mobz/elasticsearch-head:5
+    restart: always
+    ports:
+      - "9100:9100"
 
 #  redis:
 #   container_name: redis
