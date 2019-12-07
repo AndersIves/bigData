@@ -15,13 +15,16 @@ services:
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
 #    restart: always
     volumes:
-      - "./es/data:/usr/share/elasticsearch/data:rw"
+      - "./es/data:/usr/share/elasticsearch/data"
       - "./es/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
-      - "./es/logs:/user/share/elasticsearch/logs:rw"
+      - "./es/logs:/user/share/elasticsearch/logs"
+    environment:
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - "ES_CLUSTERNAME=es-cluster"
     ports:
       - "9200:9200" 
       - "9300:9300"
-#  es_head:
+#  es-head:
 #    container_name: es_head
 #    image: mobz/elasticsearch-head:5
 #    restart: always
