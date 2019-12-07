@@ -1,10 +1,38 @@
-network.bind_host: 0.0.0.0
-cluster.name: es-cluster
-cluster.routing.allocation.disk.threshold_enabled: false
-node.name: master
-node.master: true
-node.data: true
-http.cors.enabled: true
-http.cors.allow-origin: "*"
-network.host: 0.0.0.0
-discovery.zen.minimum_master_nodes: 1
+bootstrap:
+  memory_lock: false
+
+cluster:
+  name: "es-cluster"
+
+node:
+  name: es-master
+  master: true
+  data: false
+
+network:
+  host: 0.0.0.0
+http:
+  port: 9200
+  cors:
+    enabled: true
+    allow-origin: "*"
+transport:
+  tcp:
+    port: 9300
+discovery:
+  zen:
+    minimum_master_nodes: 1
+    ping:
+      unicast:
+        hosts:
+          - "*.*.*.*:9300"
+          - "*.*.*.*:9301"
+          - "*.*.*.*:9302"
+
+path:
+  logs: /usr/share/elasticsearch/logs
+
+xpack:
+  security:
+    audit:
+      enabled: true
