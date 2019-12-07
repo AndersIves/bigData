@@ -10,28 +10,51 @@ services:
 ##    environment:
 ##      MONGO_INITDB_ROOT_USERNAME: "root"
 ##      MONGO_INITDB_ROOT_PASSWORD: "root"
+
   es-master:
     container_name: es-master
     image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
     environment:
-      - cluster.name=es-cluster
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ES_CLUSTERNAME=elasticsearch
     command: elasticsearch
-#    restart: always
     volumes:
       - "./es/data:/usr/share/elasticsearch/data"
       - "./es/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "./es/logs:/user/share/elasticsearch/logs"
-    mem_limit: 1024m
     ports:
       - "9200:9200" 
       - "9300:9300"
-#  es-head:
-#    container_name: es_head
-#    image: mobz/elasticsearch-head:5
-#    restart: always
-#    ports:
-#      - "9100:9100"
+
+
+  elasticsearch-data:
+    container_name: es1
+    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
+    volumes:
+      - "./es1/data:/usr/share/elasticsearch/data"
+      - "./es1/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
+      - "./es1/logs:/user/share/elasticsearch/logs"
+    environment:
+      - bootstrap.memory_lock=true
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+      - ES_CLUSTERNAME=elasticsearch
+    command: elasticsearch
+    ports:
+      - "9201:9200"
+      - "9301:9300"
+    links:
+      - es-master:elasticsearch
+
+  es-head:
+    container_name: es_head
+    image: mobz/elasticsearch-head:5
+    volumes:
+      - "./es_head/Gruntfile.js:/usr/src/app/Gruntfile.js"
+      - "./es_head/app.js:/usr/src/app/_site/app.js"
+    ports:
+      - "9100:9100"
+    links:
+      - es-master:elasticsearch
 
 #  redis:
 #   container_name: redis
