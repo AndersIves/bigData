@@ -16,7 +16,7 @@ services:
     image: elasticsearch:5.6.4
     container_name: master
     volumes:
-      - ./node/es1/data:/usr/share/elasticsearch/data
+#      - ./node/es1/data:/usr/share/elasticsearch/data
       - ./node/es1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
