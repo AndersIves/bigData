@@ -29,8 +29,10 @@ node.master: true
 node.data: true
 
 #有成为主节点资格的节点列表
-discovery.zen.ping.unicast.hosts: ["X.X.X.X:9300"]
+#discovery.zen.ping.unicast.hosts: ["X.X.X.X:9300"]
 
 #集群中一直正常运行的，有成为master节点资格的最少节点数（默认为1）
+
 # (totalnumber of master-eligible nodes / 2 + 1)
+
 discovery.zen.minimum_master_nodes: 1
