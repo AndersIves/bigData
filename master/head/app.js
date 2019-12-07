@@ -1282,7 +1282,7 @@
 			base_uri: null
 		},
 		init: function() {
-			this.base_uri = this.config.base_uri || this.prefs.get("app-base_uri") || "http://localhost:9200";
+			this.base_uri = this.config.base_uri || this.prefs.get("app-base_uri") || "http://192.168.217.129:9200";
 		},
 		setVersion: function( v ) {
 			this.version = v;
