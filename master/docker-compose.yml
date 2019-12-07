@@ -17,7 +17,7 @@ services:
     container_name: master
     volumes:
 #      - ./elasticsearch/node/es1/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/node/es1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/node/master/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
       - ES_CLUSTERNAME=es-cluster
@@ -31,7 +31,7 @@ services:
     container_name: es-node-01
     volumes:
 #      - ./node/es2/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/node/es2/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+      - ./elasticsearch/node/es1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
