@@ -28,14 +28,14 @@ services:
 
   es-node-01:
     image: elasticsearch:5.6.4
-    container_name: es2
+    container_name: es-node-01
     volumes:
 #      - ./node/es2/data:/usr/share/elasticsearch/data
       - ./elasticsearch/node/es2/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
     environment:
       - bootstrap.memory_lock=true
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - ES_CLUSTERNAME=elasticsearch
+      - ES_CLUSTERNAME=es-cluster
     command: elasticsearch
     ports:
       - "9201:9200"
