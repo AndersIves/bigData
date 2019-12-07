@@ -46,7 +46,7 @@ services:
     container_name: head
     volumes:
       - ./head/Gruntfile.js:/usr/src/app/Gruntfile.js
-      - ./head/_site/app.js:/usr/src/app/_site/app.js
+      - ./head/app.js:/usr/src/app/_site/app.js
     ports:
       - "9100:9100"
     links:
