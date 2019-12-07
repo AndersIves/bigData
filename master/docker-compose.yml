@@ -14,7 +14,7 @@ services:
 
   es-master:
     image: elasticsearch:5.6.4
-    container_name: master
+    container_name: es-master
     volumes:
 #      - ./elasticsearch/node/es1/data:/usr/share/elasticsearch/data
       - ./elasticsearch/node/master/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
