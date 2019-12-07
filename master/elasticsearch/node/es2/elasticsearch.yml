@@ -8,4 +8,4 @@ http.cors.enabled: true
 http.cors.allow-origin: "*"
 network.host: 192.168.217.129
 discovery.zen.minimum_master_nodes: 1
-discovery.zen.ping.unicast.hosts: es1
+discovery.zen.ping.unicast.hosts: master
