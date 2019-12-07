@@ -1,16 +1,16 @@
 version: '2.0'
 services:
 
-  #  mongo_db:
-  #    container_name: mongo_db
-  ##    build: ./mongo
-  #    image: mongo:3.4.3
-  #    restart: always
-  #    ports:
-  #      - "27017:27017"
-  ##    environment:
-  ##      MONGO_INITDB_ROOT_USERNAME: "root"
-  ##      MONGO_INITDB_ROOT_PASSWORD: "root"
+  mongo_db:
+    container_name: mongo_db
+#    build: ./mongo
+    image: mongo:3.4.3
+    restart: always
+    ports:
+      - "27017:27017"
+#    environment:
+#      MONGO_INITDB_ROOT_USERNAME: "root"
+#      MONGO_INITDB_ROOT_PASSWORD: "root"
 
   es-master:
     image: elasticsearch:5.6.4
