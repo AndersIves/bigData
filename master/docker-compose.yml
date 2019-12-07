@@ -12,12 +12,16 @@ services:
 #      MONGO_INITDB_ROOT_PASSWORD: "root"
   es-master:
     container_name: es-master
-    image: docker.elastic.co/elasticsearch/elasticsearch:5.6.2
-#    restart: always
+    image: elasticsearch:6.6.2
+    environment:
+      - cluster.name=es-cluster
+      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    restart: always
     volumes:
       - "./es/data:/usr/share/elasticsearch/data"
       - "./es/conf/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml"
       - "./es/logs:/user/share/elasticsearch/logs"
+    mem_limit: 1024m
     ports:
       - "9200:9200" 
       - "9300:9300"
