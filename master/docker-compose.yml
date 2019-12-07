@@ -16,6 +16,7 @@ services:
     environment:
       - cluster.name=es-cluster
       - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+    command: elasticsearch
 #    restart: always
     volumes:
       - "./es/data:/usr/share/elasticsearch/data"
