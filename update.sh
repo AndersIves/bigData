@@ -1,5 +1,4 @@
 git fetch --all
 git reset --hard origin/master
 git pull
-cd ..
-chmod 777 -R bigData
+chmod 777 -R ./
