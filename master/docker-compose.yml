@@ -2,7 +2,7 @@ version: '2.0'
 services:
 
   mongo_db:
-    container_name: mongo_db
+    container_name: mongodb
 #    build: ./mongo
     image: mongo:3.4.3
     restart: always
