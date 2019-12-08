@@ -64,6 +64,7 @@ services:
       - "7070:7070"
       - "8080:8080"
       - "50070:50070"
+
   spark-worker-01:
     image: singularities/spark
     container_name: spark-worker
@@ -73,6 +74,7 @@ services:
       SPARK_WORKER_MEMORY: 2g
     links:
       - spark-master
+
   spark-worker-02:
     image: singularities/spark
     container_name: spark-worker-02
@@ -82,9 +84,41 @@ services:
       SPARK_WORKER_MEMORY: 2g
     links:
       - spark-master
+
   spark-worker-03:
     image: singularities/spark
     container_name: spark-worker-03
+    command: start-spark worker spark-master
+    environment:
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+    links:
+      - spark-master
+
+
+  spark-worker-04:
+    image: singularities/spark
+    container_name: spark-worker-04
+    command: start-spark worker spark-master
+    environment:
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+    links:
+      - spark-master
+
+  spark-worker-05:
+    image: singularities/spark
+    container_name: spark-worker-05
+    command: start-spark worker spark-master
+    environment:
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
+    links:
+      - spark-master
+
+  spark-worker-06:
+    image: singularities/spark
+    container_name: spark-worker-06
     command: start-spark worker spark-master
     environment:
       SPARK_WORKER_CORES: 2
