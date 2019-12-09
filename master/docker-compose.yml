@@ -70,8 +70,8 @@ services:
     image: singularities/spark
     command: start-spark worker spark-master
     environment:
-      SPARK_WORKER_CORES: 4
-      SPARK_WORKER_MEMORY: 4g
+      SPARK_WORKER_CORES: 2
+      SPARK_WORKER_MEMORY: 2g
     links:
       - spark-master
     deploy:
@@ -95,17 +95,6 @@ services:
     environment:
       SPARK_WORKER_CORES: 4
       SPARK_WORKER_MEMORY: 4g
-    links:
-      - spark-master
-    deploy:
-      mode: global
-
-  spark-worker-04:
-    image: singularities/spark
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 2g
     links:
       - spark-master
     deploy:
