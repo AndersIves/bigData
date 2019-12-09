@@ -64,7 +64,10 @@ services:
       - "8080:8080"
       - "50070:50070"
     deploy:
-      mode: global
+      placement:
+        constraints:
+          - node.hostname == c2x133
+#      mode: global
 
   spark-worker-01:
     image: singularities/spark
@@ -75,6 +78,9 @@ services:
     links:
       - spark-master
     deploy:
+      placement:
+        constraints:
+          - node.hostname == c2x133
 #      resources:
 #        limits:
 #          cpus: '1'
@@ -82,7 +88,7 @@ services:
 #        reservations:
 #          cpus: '0.5'
 #          memory: 2048M
-      mode: global
+#      mode: global
 
 
   spark-worker-02:
@@ -94,6 +100,9 @@ services:
     links:
       - spark-master
     deploy:
+      placement:
+        constraints:
+          - node.hostname == c2x134
 #      resources:
 #        limits:
 #          cpus: '1'
@@ -101,7 +110,7 @@ services:
 #        reservations:
 #          cpus: '0.5'
 #          memory: 2048M
-      mode: global
+#      mode: global
 
 
 
