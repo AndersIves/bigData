@@ -1,8 +1,8 @@
 iptables -F
 
-token = $(docker swarm leave --force)
+docker swarm leave --force
 
-docker swarm init
+token = $(docker swarm init)
 
 cd master
 
