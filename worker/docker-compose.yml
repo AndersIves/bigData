@@ -1,11 +1,15 @@
 version: '2.0'
 services:
-  spark-worker-01:
+  spark-worker:
     image: singularities/spark
-    container_name: spark-worker-01
+    container_name: spark-worker
     command: start-spark worker spark-master
     environment:
       SPARK_WORKER_CORES: 1
-      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_MEMORY: 4g
     links:
-      - spark-master
+      - cluster:spark-master
+
+networks:
+  cluster:
+    external: true

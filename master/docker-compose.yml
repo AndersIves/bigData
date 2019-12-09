@@ -12,19 +12,19 @@ services:
 #      MONGO_INITDB_ROOT_USERNAME: "root"
 #      MONGO_INITDB_ROOT_PASSWORD: "root"
 
-  es-master:
-    image: elasticsearch:5.6.4
-    container_name: es-master
-    volumes:
-#      - ./elasticsearch/node/es1/data:/usr/share/elasticsearch/data
-      - ./elasticsearch/node/master/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-    environment:
-      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-      - ES_CLUSTERNAME=es-cluster
-    command: elasticsearch
-    ports:
-      - "9200:9200"
-      - "9300:9300"
+#  es-master:
+#    image: elasticsearch:5.6.4
+#    container_name: es-master
+#    volumes:
+##      - ./elasticsearch/node/es1/data:/usr/share/elasticsearch/data
+#      - ./elasticsearch/node/master/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    environment:
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - ES_CLUSTERNAME=es-cluster
+#    command: elasticsearch
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
 
 #  es-node-01:
 #    image: elasticsearch:5.6.4
@@ -43,17 +43,16 @@ services:
 #    links:
 #      - es-master:elasticsearch
 
-
-  elasticsearch-head:
-    image: mobz/elasticsearch-head:5
-    container_name: head
-    volumes:
-      - ./elasticsearch/head/Gruntfile.js:/usr/src/app/Gruntfile.js
-      - ./elasticsearch/head/app.js:/usr/src/app/_site/app.js
-    ports:
-      - "9100:9100"
-    links:
-      - es-master:elasticsearch
+#  elasticsearch-head:
+#    image: mobz/elasticsearch-head:5
+#    container_name: head
+#    volumes:
+#      - ./elasticsearch/head/Gruntfile.js:/usr/src/app/Gruntfile.js
+#      - ./elasticsearch/head/app.js:/usr/src/app/_site/app.js
+#    ports:
+#      - "9100:9100"
+#    links:
+#      - es-master:elasticsearch
 
   spark-master:
     image: singularities/spark
@@ -64,68 +63,8 @@ services:
       - "7070:7070"
       - "8080:8080"
       - "50070:50070"
-
-  spark-worker-01:
-    image: singularities/spark
-    container_name: spark-worker
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
     links:
-      - spark-master
-
-  spark-worker-02:
-    image: singularities/spark
-    container_name: spark-worker-02
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
-    links:
-      - spark-master
-
-  spark-worker-03:
-    image: singularities/spark
-    container_name: spark-worker-03
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
-    links:
-      - spark-master
-
-
-  spark-worker-04:
-    image: singularities/spark
-    container_name: spark-worker-04
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
-    links:
-      - spark-master
-
-  spark-worker-05:
-    image: singularities/spark
-    container_name: spark-worker-05
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
-    links:
-      - spark-master
-
-  spark-worker-06:
-    image: singularities/spark
-    container_name: spark-worker-06
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
-    links:
-      - spark-master
-
+      - cluster
 networks:
   cluster:
     external: true
