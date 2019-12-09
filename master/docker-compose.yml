@@ -2,7 +2,6 @@ version: '3.0'
 services:
 
   mongo_db:
-    container_name: mongodb
 #    build: ./mongo
     image: mongo:3.4.3
     restart: always
@@ -58,11 +57,7 @@ services:
 
   spark-master:
     image: singularities/spark
-    container_name: spark-master
     command: start-spark master
-    environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 4g
     ports:
       - "6066:6066"
       - "7070:7070"
@@ -71,9 +66,17 @@ services:
     deploy:
       mode: global
 
-networks:
-  bigData:
-    external: true
+  spark-worker:
+    image: singularities/spark
+    command: start-spark worker spark-master
+    environment:
+      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_MEMORY: 4g
+    links:
+      - spark-master
+    deploy:
+      mode: global
+    replicas: 3
 
 
 
