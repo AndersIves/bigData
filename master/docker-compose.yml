@@ -112,7 +112,7 @@ services:
     links:
       - spark-master
     deploy:
-      resources:
+#      resources:
 #        limits:
 #          cpus: '1'
 #          memory: 4096M
