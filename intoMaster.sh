@@ -1,1 +1,1 @@
-docker run -itd spark-master /bin/bash
+docker exec -it spark-master /bin/bash
