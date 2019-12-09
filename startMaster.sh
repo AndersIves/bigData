@@ -1,5 +1,1 @@
-iptables -F
-
-cd master
-
-docker-compose up -d
+docker stack deploy -c master/docker-compose.yml bigData
