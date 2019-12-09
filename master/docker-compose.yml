@@ -88,7 +88,8 @@ services:
     deploy:
       placement:
         constraints:
-          ## 常用方式指定 manager或者work节点
+          ## 常用方式指定 manager或者work节点placement:
+          - node.hostname == c2x133
           - node.role == worker
       mode: global
 
@@ -105,6 +106,7 @@ services:
       placement:
         constraints:
           ## 常用方式指定 manager或者work节点
+          - node.hostname == c3x134
           - node.role == worker
       mode: global
 
