@@ -9,3 +9,9 @@ services:
       SPARK_WORKER_MEMORY: 4g
     links:
       - spark-master
+    deploy:
+      mode: global
+
+networks:
+  bigData:
+    external: true
