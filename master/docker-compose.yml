@@ -75,7 +75,7 @@ services:
     links:
       - spark-master
     deploy:
-      replicas: 1
+      replicas:
         placement:
           constraints:
             ## 常用方式指定 manager或者work节点
@@ -91,7 +91,7 @@ services:
     links:
       - spark-master
     deploy:
-      replicas: 1
+      replicas:
         placement:
           constraints:
             ## 常用方式指定 manager或者work节点
@@ -108,7 +108,7 @@ services:
     links:
       - spark-master
     deploy:
-      replicas: 1
+      replicas:
         placement:
           constraints:
             ## 常用方式指定 manager或者work节点
