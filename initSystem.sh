@@ -1,4 +1,4 @@
-sh ./init/aliyun_repo.sh
+sh ./init/aliYumSource.sh
 
 
 sh ./init/docker.sh
