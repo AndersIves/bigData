@@ -86,11 +86,10 @@ services:
     links:
       - spark-master
     deploy:
-      replicas:
-        placement:
-          constraints:
-            ## 常用方式指定 manager或者work节点
-            - node.role == worker
+      placement:
+        constraints:
+          ## 常用方式指定 manager或者work节点
+          - node.role == worker
       mode: global
 
 
@@ -103,11 +102,10 @@ services:
     links:
       - spark-master
     deploy:
-      replicas:
-        placement:
-          constraints:
-            ## 常用方式指定 manager或者work节点
-            - node.role == worker
+      placement:
+        constraints:
+          ## 常用方式指定 manager或者work节点
+          - node.role == worker
       mode: global
 
 
