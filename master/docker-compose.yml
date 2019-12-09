@@ -75,13 +75,13 @@ services:
     links:
       - spark-master
     deploy:
-      resources:
-        limits:
-          cpus: '0.5'
-          memory: 2048M
-        reservations:
-          cpus: '0.25'
-          memory: 1024M
+#      resources:
+#        limits:
+#          cpus: '0.5'
+#          memory: 2048M
+#        reservations:
+#          cpus: '0.25'
+#          memory: 1024M
       mode: global
 
   spark-worker-02:
@@ -93,13 +93,13 @@ services:
     links:
       - spark-master
     deploy:
-      resources:
-        limits:
-          cpus: '1'
-          memory: 4096M
-        reservations:
-          cpus: '0.5'
-          memory: 2048M
+#      resources:
+#        limits:
+#          cpus: '1'
+#          memory: 4096M
+#        reservations:
+#          cpus: '0.5'
+#          memory: 2048M
       mode: global
 
 
@@ -113,12 +113,12 @@ services:
       - spark-master
     deploy:
       resources:
-        limits:
-          cpus: '1'
-          memory: 4096M
-        reservations:
-          cpus: '0.5'
-          memory: 2048M
+#        limits:
+#          cpus: '1'
+#          memory: 4096M
+#        reservations:
+#          cpus: '0.5'
+#          memory: 2048M
       mode: global
 
 
