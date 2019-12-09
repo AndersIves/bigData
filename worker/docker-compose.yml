@@ -9,7 +9,3 @@ services:
       SPARK_WORKER_MEMORY: 4g
     links:
       - spark-master
-
-networks:
-  cluster:
-    external: true

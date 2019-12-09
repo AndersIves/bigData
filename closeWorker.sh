@@ -1,3 +1,1 @@
-cd worker
-
-docker-compose up -d
+docker stack rm bigData

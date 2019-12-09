@@ -1,3 +1,1 @@
-cd master
-
-docker-compose down
+docker stack rm bigData
