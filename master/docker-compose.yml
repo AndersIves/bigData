@@ -64,10 +64,7 @@ services:
       - "8080:8080"
       - "50070:50070"
     deploy:
-      placement:
-        constraints:
-          ## 常用方式指定 manager或者work节点placement:
-          - node.hostname == c1x132
+      mode: global
 
   spark-worker-01:
     image: singularities/spark
@@ -80,7 +77,6 @@ services:
     deploy:
       placement:
         constraints:
-          ## 常用方式指定 manager或者work节点placement:
           - node.hostname == c1x132
 
   spark-worker-02:
@@ -94,9 +90,7 @@ services:
     deploy:
       placement:
         constraints:
-          ## 常用方式指定 manager或者work节点placement:
           - node.hostname == c2x133
-          # - node.role == worker
 
 
   spark-worker-03:
@@ -110,9 +104,7 @@ services:
     deploy:
       placement:
         constraints:
-          ## 常用方式指定 manager或者work节点
           - node.hostname == c3x134
-          # - node.role == worker
 
 
 
