@@ -1,0 +1,1 @@
+docker run -itd spark-master /bin/bash
