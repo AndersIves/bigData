@@ -70,14 +70,13 @@ services:
     image: singularities/spark
     command: start-spark worker spark-master
     environment:
-      SPARK_WORKER_CORES: 2
-      SPARK_WORKER_MEMORY: 2g
+      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_MEMORY: 4g
     links:
       - spark-master
     deploy:
-      placement:
-        constraints:
-          - node.hostname == c1x132
+      mode: global
+
 
   spark-worker-02:
     image: singularities/spark
@@ -88,23 +87,7 @@ services:
     links:
       - spark-master
     deploy:
-      placement:
-        constraints:
-          - node.hostname == c2x133
-
-
-  spark-worker-03:
-    image: singularities/spark
-    command: start-spark worker spark-master
-    environment:
-      SPARK_WORKER_CORES: 4
-      SPARK_WORKER_MEMORY: 4g
-    links:
-      - spark-master
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == c3x134
+      mode: global
 
 
 
