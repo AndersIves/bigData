@@ -1,9 +1,11 @@
 iptables -F
 
-docker swarm leave --force
+token = $(docker swarm leave --force)
 
 docker swarm init
 
 cd master
 
 docker-compose up -d
+
+echo $token
