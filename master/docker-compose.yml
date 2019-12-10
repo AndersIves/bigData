@@ -92,6 +92,8 @@ services:
     links:
       - spark-master
     restart: always
+    depends_on:
+      - spark-master
     deploy:
       placement:
         constraints:
@@ -115,6 +117,8 @@ services:
     links:
       - spark-master
     restart: always
+    depends_on:
+      - spark-master
     deploy:
       placement:
         constraints:
