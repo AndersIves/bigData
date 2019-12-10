@@ -87,8 +87,8 @@ services:
     image: singularities/spark
     command: start-spark worker spark-master
     environment:
-      SPARK_WORKER_CORES: 3
-      SPARK_WORKER_MEMORY: 3g
+      SPARK_WORKER_CORES: 4
+      SPARK_WORKER_MEMORY: 4g
     restart: always
     links:
       - spark-master
