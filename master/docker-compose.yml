@@ -64,10 +64,10 @@ services:
       - "8080:8080"
       - "50070:50070"
     deploy:
-#      placement:
-#        constraints:
-#          - node.hostname == c2x133
-      mode: global
+      placement:
+        constraints:
+          - node.hostname == c1x132
+#      mode: global
 
 #  spark-worker-00:
 #    image: singularities/spark
