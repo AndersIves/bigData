@@ -60,7 +60,7 @@ services:
     command: start-spark master
     ports:
       - "6066:6066"
-      - "7070:7070"
+      - "7077:7077"
       - "8080:8080"
       - "50070:50070"
     restart: always
