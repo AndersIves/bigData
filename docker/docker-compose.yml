@@ -34,47 +34,6 @@ services:
 #      MONGO_INITDB_ROOT_USERNAME: "root"
 #      MONGO_INITDB_ROOT_PASSWORD: "root"
 
-#  es-master:
-#    image: elasticsearch:5.6.4
-#    container_name: es-master
-#    volumes:
-##      - ./elasticsearch/node/es1/data:/usr/share/elasticsearch/data
-#      - ./elasticsearch/node/master/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-#    environment:
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - ES_CLUSTERNAME=es-cluster
-#    command: elasticsearch
-#    ports:
-#      - "9200:9200"
-#      - "9300:9300"
-
-#  es-node-01:
-#    image: elasticsearch:5.6.4
-#    container_name: es-node-01
-#    volumes:
-##      - ./node/es2/data:/usr/share/elasticsearch/data
-#      - ./elasticsearch/node/es1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
-#    environment:
-#      - bootstrap.memory_lock=true
-#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
-#      - ES_CLUSTERNAME=es-cluster
-#    command: elasticsearch
-#    ports:
-#      - "9201:9200"
-#      - "9301:9300"
-#    links:
-#      - es-master:elasticsearch
-
-#  elasticsearch-head:
-#    image: mobz/elasticsearch-head:5
-#    container_name: head
-#    volumes:
-#      - ./elasticsearch/head/Gruntfile.js:/usr/src/app/Gruntfile.js
-#      - ./elasticsearch/head/app.js:/usr/src/app/_site/app.js
-#    ports:
-#      - "9100:9100"
-#    links:
-#      - es-master:elasticsearch
 
   spark-master:
     hostname: spark-master
@@ -82,7 +41,7 @@ services:
     command: start-spark master
     volumes:
       - ~/data:/data
-      - ./pthon:/jars
+      - ./spark:/spark
     ports:
       - "8020:8020"
       - "6066:6066"
@@ -173,4 +132,45 @@ services:
 #      mode: global
 
 
+#  es-master:
+#    image: elasticsearch:5.6.4
+#    container_name: es-master
+#    volumes:
+##      - ./elasticsearch/node/es1/data:/usr/share/elasticsearch/data
+#      - ./elasticsearch/node/master/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    environment:
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - ES_CLUSTERNAME=es-cluster
+#    command: elasticsearch
+#    ports:
+#      - "9200:9200"
+#      - "9300:9300"
+
+#  es-node-01:
+#    image: elasticsearch:5.6.4
+#    container_name: es-node-01
+#    volumes:
+##      - ./node/es2/data:/usr/share/elasticsearch/data
+#      - ./elasticsearch/node/es1/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+#    environment:
+#      - bootstrap.memory_lock=true
+#      - "ES_JAVA_OPTS=-Xms512m -Xmx512m"
+#      - ES_CLUSTERNAME=es-cluster
+#    command: elasticsearch
+#    ports:
+#      - "9201:9200"
+#      - "9301:9300"
+#    links:
+#      - es-master:elasticsearch
+
+#  elasticsearch-head:
+#    image: mobz/elasticsearch-head:5
+#    container_name: head
+#    volumes:
+#      - ./elasticsearch/head/Gruntfile.js:/usr/src/app/Gruntfile.js
+#      - ./elasticsearch/head/app.js:/usr/src/app/_site/app.js
+#    ports:
+#      - "9100:9100"
+#    links:
+#      - es-master:elasticsearch
 
