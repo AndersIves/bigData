@@ -3,6 +3,7 @@ services:
 
   mongo_db:
 #    build: ./mongo
+    hostname: mongo_db
     image: mongo:3.4.3
     restart: always
     ports:
@@ -56,6 +57,7 @@ services:
 #      - es-master:elasticsearch
 
   spark-master:
+    hostname: spark-master
     image: singularities/spark
     command: start-spark master
     ports:
