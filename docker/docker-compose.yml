@@ -62,8 +62,10 @@ services:
     image: singularities/spark
     command: start-spark master
     volumes:
-      - ~/data:~/data
-      - ./jars:~/jars
+      - ~/data/movies.csv:~/data/movies.csv
+      - ~/data/ratings.csv:~/data/ratings.csv
+      - ~/data/tags.csv:~/data/tags.csv
+      - ./jars/dataloader-1.0-SNAPSHOT.jar:~/jars/dataloader-1.0-SNAPSHOT.jar
     ports:
       - "8020:8020"
       - "6066:6066"
