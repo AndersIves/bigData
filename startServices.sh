@@ -1,2 +1,2 @@
 
-docker stack deploy -c master/docker-compose.yml bigData
+docker stack deploy -c docker/docker-compose.yml bigData
