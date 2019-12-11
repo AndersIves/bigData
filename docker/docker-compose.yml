@@ -61,6 +61,9 @@ services:
     hostname: spark-master
     image: singularities/spark
     command: start-spark master
+    volumes:
+      - ~/data:~/data
+      - ./jars:~/jars
     ports:
       - "8020:8020"
       - "6066:6066"
