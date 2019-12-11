@@ -4,13 +4,32 @@ services:
   mongo_db:
 #    build: ./mongo
     hostname: mongo_db
-
     image: mongo:3.4.3
     restart: always
     ports:
       - "27017:27017"
     deploy:
       mode: global
+
+  spring:
+    hostname: spring
+    image: java
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./spring/spring.jar:/spring.jar
+    command: java -jar /spring.jar
+    depends_on:
+      - mongo_db
+      - spark-master
+    links:
+      - mongo_db
+      - spark-master
+    deploy:
+      placement:
+        constraints:
+          - node.hostname == c1x132
 #    environment:
 #      MONGO_INITDB_ROOT_USERNAME: "root"
 #      MONGO_INITDB_ROOT_PASSWORD: "root"
@@ -63,7 +82,7 @@ services:
     command: start-spark master
     volumes:
       - ~/data:/data
-      - ./jars:/jars
+      - ./pthon:/jars
     ports:
       - "8020:8020"
       - "6066:6066"
