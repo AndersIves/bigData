@@ -11,25 +11,25 @@ services:
     deploy:
       mode: global
 
-  spring:
-    hostname: spring
-    image: registry.cn-hangzhou.aliyuncs.com/choerodon-tools/javabase:0.5.0
-    restart: always
-    ports:
-      - "80:80"
-    volumes:
-      - ./spring/spring.jar:/spring.jar
-    command: java -jar /spring.jar
-    depends_on:
-      - mongo_db
-      - spark-master
-    links:
-      - mongo_db
-      - spark-master
-    deploy:
-      placement:
-        constraints:
-          - node.hostname == c1x132
+#  spring:
+#    hostname: spring
+#    image: registry.cn-hangzhou.aliyuncs.com/choerodon-tools/javabase:0.5.0
+#    restart: always
+#    ports:
+#      - "80:80"
+#    volumes:
+#      - ./spring/spring.jar:/spring.jar
+#    command: java -jar /spring.jar
+#    depends_on:
+#      - mongo_db
+#      - spark-master
+#    links:
+#      - mongo_db
+#      - spark-master
+#    deploy:
+#      placement:
+#        constraints:
+#          - node.hostname == c1x132
 #    environment:
 #      MONGO_INITDB_ROOT_USERNAME: "root"
 #      MONGO_INITDB_ROOT_PASSWORD: "root"
